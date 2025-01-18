@@ -1,0 +1,21 @@
+.item-grid {
+  margin: 40px 60px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1280px) {
+  .item-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .item-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 525px) {
+  .item-grid {
+    grid-template-columns: 1fr;
+  }
+}

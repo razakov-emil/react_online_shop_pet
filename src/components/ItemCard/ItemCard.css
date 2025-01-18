@@ -1,0 +1,21 @@
+.item-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  height: auto;
+  margin: 0px 20px 20px 20px;
+  padding: 20px;
+  border: 2px solid #141414;
+  border-radius: 5px;
+}
+
+.item-card__image {
+  margin: 20px auto;
+  width: 150px;
+  height: 150px;
+}
+
+.item-card__name {
+  margin-bottom: 10px;
+}
