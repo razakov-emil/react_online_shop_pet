@@ -3,11 +3,11 @@ import { useState } from "react";
 import { handleError } from "../../functions/handleError";
 
 export default function ItemCard({
-  key,
+  id,
   source,
   itemName,
   itemCost,
-  addToCart,
+  setCartItems,
 }) {
   const [currentSrc, setCurrentSrc] = useState(source);
   const [retried, setRetried] = useState(false);
@@ -27,7 +27,22 @@ export default function ItemCard({
       <button
         className="item-card__button"
         onClick={() => {
-          addToCart({ key, source, itemName, itemCost });
+          setCartItems((prevCartItems) => {
+            const itemIndex = prevCartItems.findIndex((obj) => obj.id === id);
+            console.log(itemIndex);
+            if (itemIndex === -1) {
+              return [
+                ...prevCartItems,
+                { id, source, itemName, itemCost, quantity: 1 },
+              ];
+            } else {
+              return prevCartItems.map((item, index) =>
+                index === itemIndex
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              );
+            }
+          });
         }}
       >
         Add to cart

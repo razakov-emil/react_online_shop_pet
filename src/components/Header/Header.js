@@ -1,4 +1,5 @@
 import "./Header.css";
+import Cart from "../Cart/Cart";
 
 export default function Header({ cartItems }) {
   return (
@@ -7,7 +8,7 @@ export default function Header({ cartItems }) {
         <div>Shop</div>
         <div className="logo-box">Lift</div>
       </div>
-      <div className="cart">Cart has {cartItems.length} items</div>
+      <Cart cartItems={cartItems} />
       <button className="login-button">Log In</button>
     </header>
   );

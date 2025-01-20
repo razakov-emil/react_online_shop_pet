@@ -5,6 +5,7 @@ header {
   justify-content: end;
   align-items: center;
   background-color: #141414;
+  position: relative;
 }
 
 .logo {

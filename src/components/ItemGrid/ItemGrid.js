@@ -2,17 +2,16 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useEffect, useState } from "react";
 import "./ItemGrid.css";
 
-export default function ItemGrid({ addToCart }) {
+export default function ItemGrid({ setCartItems }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/photos?albumId=1"
-        );
+        const response = await fetch("https://dummyjson.com/products");
         const json = await response.json();
-        setData(json);
+        console.log(json);
+        setData(json.products);
       } catch (error) {
         console.error("Ошибка при получении данных", error);
       }
@@ -26,10 +25,11 @@ export default function ItemGrid({ addToCart }) {
       {data.map((item) => (
         <ItemCard
           key={item.id}
-          source={item.thumbnailUrl}
+          id={item.id}
+          source={item.images}
           itemName={item.title}
-          itemCost={500}
-          addToCart={addToCart}
+          itemCost={item.price}
+          setCartItems={setCartItems}
         />
       ))}
     </div>
