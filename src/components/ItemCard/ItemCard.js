@@ -1,15 +1,10 @@
 import "./ItemCard.css";
 import { useState } from "react";
 import { handleError } from "../../functions/handleError";
+import addToCart from "../../functions/addToCart";
 
-export default function ItemCard({
-  id,
-  source,
-  itemName,
-  itemCost,
-  setCartItems,
-}) {
-  const [currentSrc, setCurrentSrc] = useState(source);
+export default function ItemCard({ item, setCartItems }) {
+  const [currentSrc, setCurrentSrc] = useState(item.images);
   const [retried, setRetried] = useState(false);
 
   return (
@@ -20,30 +15,13 @@ export default function ItemCard({
           handleError(currentSrc, setCurrentSrc, retried, setRetried)
         }
         src={currentSrc}
-        alt={itemName}
+        alt={item.title}
       />
-      <div className="item-card__name">{itemName}</div>
-      <div className="item-card__cost">{itemCost + "₡"}</div>
+      <div className="item-card__name">{item.title}</div>
+      <div className="item-card__cost">{item.price + "₡"}</div>
       <button
         className="item-card__button"
-        onClick={() => {
-          setCartItems((prevCartItems) => {
-            const itemIndex = prevCartItems.findIndex((obj) => obj.id === id);
-            console.log(itemIndex);
-            if (itemIndex === -1) {
-              return [
-                ...prevCartItems,
-                { id, source, itemName, itemCost, quantity: 1 },
-              ];
-            } else {
-              return prevCartItems.map((item, index) =>
-                index === itemIndex
-                  ? { ...item, quantity: item.quantity + 1 }
-                  : item
-              );
-            }
-          });
-        }}
+        onClick={() => addToCart(item, setCartItems)}
       >
         Add to cart
       </button>

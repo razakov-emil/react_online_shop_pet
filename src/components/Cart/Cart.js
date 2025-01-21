@@ -2,8 +2,9 @@ import "./Cart.css";
 import { useState } from "react";
 import CartItem from "../CartItem/CartItem";
 
-export default function Cart({ cartItems }) {
+export default function Cart({ cartItems, setCartItems }) {
   const [hovered, setHovered] = useState(false);
+
   return (
     <>
       <div
@@ -22,7 +23,9 @@ export default function Cart({ cartItems }) {
 
         <div className={hovered ? "cart-modal" : "cart-modal hidden"}>
           {cartItems.map((item) => {
-            return <CartItem key={item.id} item={item} />;
+            return (
+              <CartItem key={item.id} item={item} setCartItems={setCartItems} />
+            );
           })}
         </div>
       </div>

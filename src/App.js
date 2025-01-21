@@ -6,7 +6,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   return (
     <>
-      <Header cartItems={cartItems} />
+      <Header cartItems={cartItems} setCartItems={setCartItems} />
       <Main setCartItems={setCartItems} />
     </>
   );

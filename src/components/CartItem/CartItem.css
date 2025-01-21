@@ -22,3 +22,10 @@
   right: 20px;
   bottom: 20px;
 }
+.item-delete {
+  background-color: orangered;
+  border: none;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+}
