@@ -1,0 +1,44 @@
+.filter-container {
+  width: 280px;
+  margin: 40px 0px;
+  background-color: #141414;
+  border-radius: 7px;
+}
+
+form {
+  top: 10px;
+  position: sticky;
+  width: 260px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #0e0e0e;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.form-segment {
+  display: flex;
+  flex-direction: column;
+}
+.form-segment > span {
+  margin-bottom: 10px;
+}
+select,
+input,
+option {
+  margin-bottom: 10px;
+  color: black;
+  height: 26px;
+  border: 2px solid rgb(255, 136, 0);
+  border-radius: 5px;
+}
+.filter-button {
+  width: 80px;
+  height: 40px;
+  background-color: orangered;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 7px;
+}
