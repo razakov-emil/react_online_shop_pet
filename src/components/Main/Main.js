@@ -14,7 +14,6 @@ export default function Main({ setCartItems }) {
         const json = await response.json();
         setData(json.products);
         setFilteredData(json.products);
-        console.log(json.products);
       } catch (error) {
         console.error("Ошибка при получении данных", error);
       }
@@ -25,11 +24,7 @@ export default function Main({ setCartItems }) {
   return (
     <div className="main">
       <ItemGrid data={filteredData} setCartItems={setCartItems} />
-      <Filter
-        data={data}
-        filteredData={filteredData}
-        setFilteredData={setFilteredData}
-      />
+      <Filter data={data} setFilteredData={setFilteredData} />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import "./Filter.css";
 import uniqueOption from "../../functions/uniqueOption";
 import { useEffect, useState } from "react";
+import handleFilter from "../../functions/handleFilter";
 
-export default function Filter({ data, filteredData, setFilteredData }) {
+export default function Filter({ data, setFilteredData }) {
   const MIN_PRICE =
     data.length > 0 ? Math.min(...data.map((item) => item["price"])) : 0;
   const MAX_PRICE =
@@ -11,21 +12,55 @@ export default function Filter({ data, filteredData, setFilteredData }) {
   const [maxPrice, setMaxPrice] = useState(MAX_PRICE);
   const [priceUsed, setPriceUsed] = useState(false);
 
+  const [filters, setFilters] = useState({
+    category: "",
+    brand: "",
+    minPrice: MIN_PRICE,
+    maxPrice: MAX_PRICE,
+  });
+
   useEffect(() => {
     setMinPrice(MIN_PRICE);
     setMaxPrice(MAX_PRICE);
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      minPrice: MIN_PRICE,
+      maxPrice: MAX_PRICE,
+    }));
   }, [MIN_PRICE, MAX_PRICE]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFilteredData(
+      data.filter((item) => {
+        const categoryMatch = filters.category
+          ? item.category.toLowerCase() === filters.category.toLowerCase()
+          : true;
+
+        const brandMatch = filters.brand ? item.brand === filters.brand : true;
+
+        const priceMatch =
+          item.price >= filters.minPrice && item.price <= filters.maxPrice;
+
+        return categoryMatch && brandMatch && priceMatch;
+      })
+    );
+  };
 
   return (
     <div className="filter-container">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <div className="form-segment category">
           <span>Категория</span>
-          <select>
+          <select
+            defaultValue="default"
+            name="category"
+            onChange={(e) => {
+              handleFilter(e, setFilters);
+              console.log(filters);
+            }}
+          >
+            <option value="default">Select category</option>
             {uniqueOption(data, "category").map((element, index) => {
               return (
                 <option key={index}>
@@ -37,22 +72,29 @@ export default function Filter({ data, filteredData, setFilteredData }) {
         </div>
         <div className="form-segment brand">
           <span>Бренд</span>
-          <select>
+          <select
+            name="brand"
+            onChange={(e) => handleFilter(e, setFilters)}
+            defaultValue="default"
+          >
+            <option value="default">Select brand</option>
             {uniqueOption(data, "brand").map((element, index) => {
-              if (element !== undefined)
-                return <option key={index}>{element}</option>;
+              return <option key={index}>{element}</option>;
             })}
           </select>
         </div>
         <div className="form-segment price">
           <span>Цена</span>
           <input
+            name="minPrice"
             type="number"
             value={priceUsed ? minPrice : ""}
             placeholder={"от " + minPrice}
             onChange={(e) => {
               setMinPrice(e.target.value);
               setPriceUsed(true);
+              handleFilter(e, setFilters);
+              console.log(filters);
             }}
             onBlur={(e) => {
               let value = e.target.value ? Number(e.target.value) : minPrice;
@@ -63,15 +105,19 @@ export default function Filter({ data, filteredData, setFilteredData }) {
               } else {
                 setMinPrice(value);
               }
+              console.log(filters);
             }}
           ></input>
           <input
+            name="maxPrice"
             type="number"
             value={priceUsed ? maxPrice : ""}
             placeholder={"до " + maxPrice}
             onChange={(e) => {
               setMaxPrice(e.target.value);
               setPriceUsed(true);
+              handleFilter(e, setFilters);
+              console.log(filters);
             }}
             onBlur={(e) => {
               let value = e.target.value ? Number(e.target.value) : maxPrice;
@@ -82,10 +128,10 @@ export default function Filter({ data, filteredData, setFilteredData }) {
               } else {
                 setMaxPrice(value);
               }
+              console.log(filters);
             }}
           ></input>
         </div>
-
         <button className="filter-button" type="submit">
           Apply
         </button>
