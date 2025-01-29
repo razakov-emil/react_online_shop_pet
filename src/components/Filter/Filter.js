@@ -57,7 +57,6 @@ export default function Filter({ data, setFilteredData }) {
             name="category"
             onChange={(e) => {
               handleFilter(e, setFilters);
-              console.log(filters);
             }}
           >
             <option value="default">Select category</option>
@@ -94,7 +93,6 @@ export default function Filter({ data, setFilteredData }) {
               setMinPrice(e.target.value);
               setPriceUsed(true);
               handleFilter(e, setFilters);
-              console.log(filters);
             }}
             onBlur={(e) => {
               let value = e.target.value ? Number(e.target.value) : minPrice;
@@ -105,7 +103,6 @@ export default function Filter({ data, setFilteredData }) {
               } else {
                 setMinPrice(value);
               }
-              console.log(filters);
             }}
           ></input>
           <input
@@ -117,7 +114,6 @@ export default function Filter({ data, setFilteredData }) {
               setMaxPrice(e.target.value);
               setPriceUsed(true);
               handleFilter(e, setFilters);
-              console.log(filters);
             }}
             onBlur={(e) => {
               let value = e.target.value ? Number(e.target.value) : maxPrice;
@@ -128,7 +124,6 @@ export default function Filter({ data, setFilteredData }) {
               } else {
                 setMaxPrice(value);
               }
-              console.log(filters);
             }}
           ></input>
         </div>

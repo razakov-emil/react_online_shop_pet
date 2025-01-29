@@ -2,6 +2,7 @@ import ItemGrid from "../ItemGrid/ItemGrid";
 import Filter from "../Filter/Filter";
 import "./Main.css";
 import { useEffect, useState } from "react";
+import SortSelector from "../SortSelector/SortSelector";
 
 export default function Main({ setCartItems }) {
   const [data, setData] = useState([]);
@@ -23,7 +24,11 @@ export default function Main({ setCartItems }) {
 
   return (
     <div className="main">
-      <ItemGrid data={filteredData} setCartItems={setCartItems} />
+      <div className="main-wrapper">
+        <SortSelector setFilteredData={setFilteredData} />
+        <ItemGrid data={filteredData} setCartItems={setCartItems} />
+      </div>
+
       <Filter data={data} setFilteredData={setFilteredData} />
     </div>
   );

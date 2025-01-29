@@ -24,7 +24,7 @@ form {
 .form-segment > span {
   margin-bottom: 10px;
 }
-select,
+.filter-container select,
 input,
 option {
   margin-bottom: 10px;
