@@ -9,6 +9,9 @@ export default function ItemCard({ item, setCartItems }) {
 
   return (
     <div className="item-card">
+      <div className="item-card__rating">
+        {(item.rating > 0 ? "★ " : "☆ ") + item.rating}
+      </div>
       <img
         className="item-card__image"
         onError={() =>

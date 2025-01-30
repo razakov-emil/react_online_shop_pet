@@ -25,8 +25,11 @@ export default function Main({ setCartItems }) {
   return (
     <div className="main">
       <div className="main-wrapper">
-        <SortSelector setFilteredData={setFilteredData} />
-        <ItemGrid data={filteredData} setCartItems={setCartItems} />
+        <SortSelector
+          filteredData={filteredData}
+          setFilteredData={setFilteredData}
+        />
+        <ItemGrid filteredData={filteredData} setCartItems={setCartItems} />
       </div>
 
       <Filter data={data} setFilteredData={setFilteredData} />
