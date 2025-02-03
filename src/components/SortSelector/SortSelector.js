@@ -1,13 +1,7 @@
 import "./SortSelector.css";
 import handleSort from "../../functions/handleSort";
-import { useEffect, useState } from "react";
 
-export default function SortSelector({ filteredData, setFilteredData }) {
-  const [sortType, setSortType] = useState("");
-
-  useEffect(() => {
-    handleSort(sortType, setFilteredData);
-  }, [filteredData]);
+export default function SortSelector({ setFilteredData, setSortType }) {
   return (
     <div className="sort-container">
       <span className="sort-span">Sort by</span>

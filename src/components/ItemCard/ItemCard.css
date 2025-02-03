@@ -20,12 +20,24 @@
 .item-card__name {
   margin-bottom: 10px;
 }
-.item-card__button {
+.item-card__cost {
+  margin-bottom: 10px;
+}
+.item-card__purchase {
   position: absolute;
   background-color: orangered;
   border-radius: 7px;
   width: 80px;
   height: 40px;
   right: 20px;
+  bottom: 20px;
+}
+.item-card__favourite {
+  position: absolute;
+  background-color: orangered;
+  border-radius: 7px;
+  width: 40px;
+  height: 40px;
+  right: 110px;
   bottom: 20px;
 }

@@ -4,10 +4,16 @@ import Main from "./components/Main/Main";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [favouriteItems, setFavouriteItems] = useState([]);
   return (
     <>
-      <Header cartItems={cartItems} setCartItems={setCartItems} />
-      <Main setCartItems={setCartItems} />
+      <Header
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        favouriteItems={favouriteItems}
+        setFavouriteItems={setFavouriteItems}
+      />
+      <Main setCartItems={setCartItems} setFavouriteItems={setFavouriteItems} />
     </>
   );
 }

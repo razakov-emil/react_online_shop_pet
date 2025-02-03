@@ -2,22 +2,20 @@ import "./Filter.css";
 import uniqueOption from "../../functions/uniqueOption";
 import { useEffect, useState } from "react";
 import handleFilter from "../../functions/handleFilter";
+import handleSort from "../../functions/handleSort";
 
-export default function Filter({ data, setFilteredData }) {
-  const MIN_PRICE =
-    data.length > 0 ? Math.min(...data.map((item) => item["price"])) : 0;
-  const MAX_PRICE =
-    data.length > 0 ? Math.max(...data.map((item) => item["price"])) : 0;
+export default function Filter({
+  sortType,
+  data,
+  setFilteredData,
+  filters,
+  setFilters,
+  MAX_PRICE,
+  MIN_PRICE,
+}) {
   const [minPrice, setMinPrice] = useState(MIN_PRICE);
   const [maxPrice, setMaxPrice] = useState(MAX_PRICE);
   const [priceUsed, setPriceUsed] = useState(false);
-
-  const [filters, setFilters] = useState({
-    category: "",
-    brand: "",
-    minPrice: MIN_PRICE,
-    maxPrice: MAX_PRICE,
-  });
 
   useEffect(() => {
     setMinPrice(MIN_PRICE);
@@ -29,8 +27,7 @@ export default function Filter({ data, setFilteredData }) {
     }));
   }, [MIN_PRICE, MAX_PRICE]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setFilteredData(
       data.filter((item) => {
         const categoryMatch = filters.category
@@ -49,7 +46,13 @@ export default function Filter({ data, setFilteredData }) {
 
   return (
     <div className="filter-container">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+          handleSort(sortType, setFilteredData);
+        }}
+      >
         <div className="form-segment category">
           <span>Категория</span>
           <select
