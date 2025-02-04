@@ -1,10 +1,13 @@
-import ItemGrid from "../ItemGrid/ItemGrid";
-import Filter from "../Filter/Filter";
-import "./Main.css";
 import { useEffect, useState } from "react";
+import "./Main.css";
 import SortSelector from "../SortSelector/SortSelector";
+import ItemGrid from "../ItemGrid/ItemGrid";
+import Pagination from "../Pagination/Pagination";
+import Filter from "../Filter/Filter";
 
 export default function Main({ setCartItems, setFavouriteItems }) {
+  const itemLimit = 24;
+  const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const MIN_PRICE =
@@ -18,11 +21,10 @@ export default function Main({ setCartItems, setFavouriteItems }) {
     maxPrice: MAX_PRICE,
   });
   const [sortType, setSortType] = useState("");
-
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch("https://dummyjson.com/products");
+        const response = await fetch(`https://dummyjson.com/products/?limit=0`);
         const json = await response.json();
         setData(json.products);
         setFilteredData(json.products);
@@ -41,9 +43,21 @@ export default function Main({ setCartItems, setFavouriteItems }) {
           setSortType={setSortType}
         />
         <ItemGrid
-          filteredData={filteredData}
+          filteredData={filteredData.slice(
+            (currentPage - 1) * itemLimit,
+            currentPage * itemLimit
+          )}
           setCartItems={setCartItems}
           setFavouriteItems={setFavouriteItems}
+        />
+        <Pagination
+          pages={Math.ceil(
+            filteredData.length > 0
+              ? Math.ceil(filteredData.length / itemLimit)
+              : 1
+          )}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         />
       </div>
       <Filter
