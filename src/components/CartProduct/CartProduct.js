@@ -4,20 +4,20 @@ import { handleError } from "../../functions/handleError";
 import deleteFromModal from "../../functions/deleteFromModal";
 
 export default function CartProduct({ item, setModalItems }) {
-  const [currentSrc, setCurrentSrc] = useState(item.source);
+  const [currentSrc, setCurrentSrc] = useState(item.images);
   const [retried, setRetried] = useState(false);
   return (
     <div className="cart-product" key={item.id}>
       <img
         className="product-image"
         src={currentSrc}
-        alt={item.itemName}
+        alt={item.title}
         onError={() =>
           handleError(currentSrc, setCurrentSrc, retried, setRetried)
         }
       />
-      <div className="product-name">{item.itemName}</div>
-      <div className="product-cost">{item.itemCost + "₵"}</div>
+      <div className="product-name">{item.title}</div>
+      <div className="product-cost">{item.price + "₵"}</div>
       <button
         className="product-delete"
         index={item.index}

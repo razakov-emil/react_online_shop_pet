@@ -17,6 +17,7 @@ export default function Header({
       <Favourite
         favouriteItems={favouriteItems}
         setFavouriteItems={setFavouriteItems}
+        setCartItems={setCartItems}
       />
       <Cart cartItems={cartItems} setCartItems={setCartItems} />
       <button className="login-button">Log In</button>

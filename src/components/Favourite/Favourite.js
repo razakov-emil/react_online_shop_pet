@@ -2,7 +2,11 @@ import "./Favourite.css";
 import { useState } from "react";
 import FavouriteProduct from "../FavouriteProduct/FavouriteProduct";
 
-export default function Favourite({ favouriteItems, setFavouriteItems }) {
+export default function Favourite({
+  favouriteItems,
+  setFavouriteItems,
+  setCartItems,
+}) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -28,6 +32,7 @@ export default function Favourite({ favouriteItems, setFavouriteItems }) {
                 key={item.id}
                 item={item}
                 setModalItems={setFavouriteItems}
+                setCartItems={setCartItems}
               />
             );
           })}

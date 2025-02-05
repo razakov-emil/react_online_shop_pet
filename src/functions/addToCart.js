@@ -1,14 +1,12 @@
 export default function addToCart(item, setCartItems) {
   setCartItems((prevCartItems) => {
+    console.log(item);
     const itemIndex = prevCartItems.findIndex((obj) => obj.id === item.id);
     if (itemIndex === -1) {
       return [
         ...prevCartItems,
         {
-          id: item.id,
-          source: item.images,
-          itemName: item.title,
-          itemCost: item.price,
+          ...item,
           quantity: 1,
         },
       ];

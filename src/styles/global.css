@@ -23,6 +23,7 @@ button {
 }
 button:hover {
   background-color: rgb(255, 86, 25);
+  color: white;
   box-shadow: 0 0 5px 1px #3f3f3f;
 }
 *::-webkit-scrollbar {

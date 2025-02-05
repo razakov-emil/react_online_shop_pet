@@ -33,7 +33,7 @@ export default function ItemCard({ item, setCartItems, setFavouriteItems }) {
         className="item-card__purchase"
         onClick={() => addToCart(item, setCartItems)}
       >
-        Add to cart
+        {item.quantity > 0 ? "In cart" : "Add to cart"}
       </button>
     </div>
   );
