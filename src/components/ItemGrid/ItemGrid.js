@@ -3,7 +3,9 @@ import "./ItemGrid.css";
 
 export default function ItemGrid({
   filteredData,
+  cartItems,
   setCartItems,
+  favouriteItems,
   setFavouriteItems,
 }) {
   return (
@@ -12,7 +14,9 @@ export default function ItemGrid({
         <ItemCard
           key={item.id}
           item={item}
+          cartItems={cartItems}
           setCartItems={setCartItems}
+          favouriteItems={favouriteItems}
           setFavouriteItems={setFavouriteItems}
         />
       ))}

@@ -5,7 +5,12 @@ import ItemGrid from "../ItemGrid/ItemGrid";
 import Pagination from "../Pagination/Pagination";
 import Filter from "../Filter/Filter";
 
-export default function Main({ setCartItems, setFavouriteItems }) {
+export default function Main({
+  cartItems,
+  setCartItems,
+  favouriteItems,
+  setFavouriteItems,
+}) {
   const itemLimit = 24;
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
@@ -47,7 +52,9 @@ export default function Main({ setCartItems, setFavouriteItems }) {
             (currentPage - 1) * itemLimit,
             currentPage * itemLimit
           )}
+          cartItems={cartItems}
           setCartItems={setCartItems}
+          favouriteItems={favouriteItems}
           setFavouriteItems={setFavouriteItems}
         />
         <Pagination

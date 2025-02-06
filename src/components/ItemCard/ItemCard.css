@@ -32,6 +32,10 @@
   right: 20px;
   bottom: 20px;
 }
+.cart__picked {
+  background-color: white;
+  color: orangered;
+}
 .item-card__favourite {
   position: absolute;
   background-color: orangered;
@@ -40,4 +44,8 @@
   height: 40px;
   right: 110px;
   bottom: 20px;
+}
+.favourite__picked {
+  background-color: white;
+  color: orangered;
 }

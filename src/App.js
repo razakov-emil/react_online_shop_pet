@@ -13,7 +13,12 @@ function App() {
         favouriteItems={favouriteItems}
         setFavouriteItems={setFavouriteItems}
       />
-      <Main setCartItems={setCartItems} setFavouriteItems={setFavouriteItems} />
+      <Main
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        favouriteItems={favouriteItems}
+        setFavouriteItems={setFavouriteItems}
+      />
     </>
   );
 }
