@@ -1,12 +1,15 @@
 import "./Header.css";
 import Cart from "../Cart/Cart";
 import Favourite from "../Favourite/Favourite";
+import LogIn from "../LogIn/LogIn";
 
 export default function Header({
   cartItems,
   setCartItems,
   favouriteItems,
   setFavouriteItems,
+  user,
+  setUser,
 }) {
   return (
     <header>
@@ -20,7 +23,7 @@ export default function Header({
         setCartItems={setCartItems}
       />
       <Cart cartItems={cartItems} setCartItems={setCartItems} />
-      <button className="login-button">Log In</button>
+      <LogIn user={user} setUser={setUser} />
     </header>
   );
 }
