@@ -1,11 +1,4 @@
-.cart-product {
-  padding: 20px;
-  border: 2px solid orangered;
-  border-radius: 10px;
-  display: flex;
-  margin-bottom: 20px;
-  position: relative;
-}
+.cart-product,
 .favourite-product {
   padding: 20px;
   border: 2px solid orangered;

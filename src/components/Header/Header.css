@@ -8,7 +8,7 @@ header {
 }
 
 .logo {
-  margin-right: 35%;
+  margin: 0 auto 0 45%;
   font-size: 26px;
   display: flex;
   align-items: center;

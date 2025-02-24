@@ -1,0 +1,32 @@
+.user-miniprofile {
+  height: 80%;
+  border-radius: 10px;
+  background-color: rgb(48, 48, 48);
+  display: flex;
+  padding: 7px;
+  margin-right: 20px;
+}
+.miniprofile-img {
+  height: 50px;
+  width: 50px;
+  margin: auto;
+  margin-right: 7px;
+}
+.miniprofile-info {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  max-width: 160px;
+  margin-right: 7px;
+}
+.miniprofile-info > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.logout {
+  margin: auto;
+  background-color: orangered;
+  border-radius: 7px;
+  width: 60px;
+  height: 40px;
+}

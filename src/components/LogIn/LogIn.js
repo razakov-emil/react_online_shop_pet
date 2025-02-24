@@ -2,28 +2,15 @@ import "./LogIn.css";
 import { useState } from "react";
 import handleLogIn from "../../functions/handleLogIn";
 
-export default function LogIn() {
+export default function LogIn({ setUser }) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("accessToken")
-  );
 
   return (
     <>
-      <button
-        className="login-button"
-        onClick={() => {
-          if (isAuthenticated) {
-            localStorage.removeItem("accessToken");
-            setIsAuthenticated(false);
-          } else {
-            setIsLoggingIn(true);
-          }
-        }}
-      >
-        {isAuthenticated ? "Log Out" : "Log In"}
+      <button className="login-button" onClick={() => setIsLoggingIn(true)}>
+        Log In
       </button>
       <div className={`authorization ${isLoggingIn ? "" : "hidden"}`}>
         <div className="background-shade">
@@ -31,13 +18,15 @@ export default function LogIn() {
             className="authorization-form"
             onSubmit={(e) => {
               e.preventDefault();
-              handleLogIn(login, password, setIsAuthenticated);
+              handleLogIn(login, password, setUser);
               setLogin("");
               setPassword("");
+              setIsLoggingIn(false);
             }}
           >
             <label className="authorization-form__title">Authorization</label>
             <input
+              required
               name="login"
               type="text"
               placeholder="Логин"
@@ -47,6 +36,7 @@ export default function LogIn() {
               }}
             ></input>
             <input
+              required
               name="password"
               type="password"
               placeholder="Пароль"
@@ -55,11 +45,7 @@ export default function LogIn() {
                 setPassword(e.target.value);
               }}
             ></input>
-            <button
-              className="authorization-form__button"
-              type="submit"
-              onClick={() => setIsLoggingIn(false)}
-            >
+            <button className="authorization-form__button" type="submit">
               Войти
             </button>
           </form>

@@ -1,4 +1,4 @@
-export default function handleLogIn(login, password, setIsAuthenticated) {
+export default function handleLogIn(login, password, setUser) {
   const authSend = async () => {
     try {
       const response = await fetch("https://dummyjson.com/auth/login", {
@@ -17,9 +17,9 @@ export default function handleLogIn(login, password, setIsAuthenticated) {
       }
       const json = await response.json();
       console.log(json);
+      setUser(json);
       localStorage.setItem("accessToken", json.accessToken);
       localStorage.setItem("refreshToken", json.refreshToken);
-      setIsAuthenticated(true);
     } catch (error) {
       console.error("Ошибка при авторизации", error);
     }
