@@ -13,8 +13,8 @@ export default function UserMiniProfile({ user, setUser }) {
         className="logout"
         onClick={() => {
           setUser({});
-          localStorage.clear("accessToken");
-          localStorage.clear("refreshToken");
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
         }}
       >
         Log Out

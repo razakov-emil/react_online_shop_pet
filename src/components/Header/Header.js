@@ -24,12 +24,16 @@ export default function Header({
             },
           });
           if (!response.ok) {
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
             throw new Error("Ошибка авторизации");
           }
           const json = await response.json();
           console.log(json);
           setUser(json);
         } catch (error) {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
           console.error("Ошибка при авторизации", error);
         }
       };
@@ -42,17 +46,19 @@ export default function Header({
         <div>Shop</div>
         <div className="logo-box">Lift</div>
       </div>
-      <Favourite
-        favouriteItems={favouriteItems}
-        setFavouriteItems={setFavouriteItems}
-        setCartItems={setCartItems}
-      />
-      <Cart cartItems={cartItems} setCartItems={setCartItems} />
-      {Object.keys(user).length === 0 ? (
-        <LogIn setUser={setUser} />
-      ) : (
-        <UserMiniProfile user={user} setUser={setUser} />
-      )}
+      <section className="header-interact">
+        <Favourite
+          favouriteItems={favouriteItems}
+          setFavouriteItems={setFavouriteItems}
+          setCartItems={setCartItems}
+        />
+        <Cart cartItems={cartItems} setCartItems={setCartItems} />
+        {Object.keys(user).length === 0 ? (
+          <LogIn setUser={setUser} />
+        ) : (
+          <UserMiniProfile user={user} setUser={setUser} />
+        )}
+      </section>
     </header>
   );
 }

@@ -1,21 +1,26 @@
 .item-grid {
+  width: calc(100vw - 300px);
   margin: 20px 0px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
-@media (max-width: 1280px) {
+@media (hover: none) {
+  .item-grid {
+    width: 100vw;
+  }
+}
+@media (max-width: 1850px) {
   .item-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 1450px) {
   .item-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (max-width: 525px) {
+@media (max-width: 920px) {
   .item-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, 1fr);
   }
 }

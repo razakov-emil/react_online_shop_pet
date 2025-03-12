@@ -5,6 +5,12 @@
   border-radius: 7px;
 }
 
+@media (hover: none) {
+  .filter-container {
+    display: none;
+  }
+}
+
 form {
   top: 10px;
   position: sticky;

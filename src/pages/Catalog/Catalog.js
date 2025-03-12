@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import "./Main.css";
-import SortSelector from "../SortSelector/SortSelector";
-import ItemGrid from "../ItemGrid/ItemGrid";
-import Pagination from "../Pagination/Pagination";
-import Filter from "../Filter/Filter";
+import "./Catalog.css";
+import SortSelector from "../../components/SortSelector/SortSelector";
+import ItemGrid from "../../components/ItemGrid/ItemGrid";
+import Pagination from "../../components/Pagination/Pagination";
+import Filter from "../../components/Filter/Filter";
 
-export default function Main({
+export default function Catalog({
   cartItems,
   setCartItems,
   favouriteItems,
@@ -41,8 +41,8 @@ export default function Main({
   }, []);
 
   return (
-    <div className="main">
-      <div className="main-wrapper">
+    <div className="catalog">
+      <div className="catalog-wrapper">
         <SortSelector
           setFilteredData={setFilteredData}
           setSortType={setSortType}
